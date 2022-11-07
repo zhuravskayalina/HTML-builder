@@ -10,14 +10,15 @@ fs.readdir(pathFolder, {withFileTypes: true}, (error, files) => {
 
     for (const file of files) {
       if (file.isFile()) {
-        const type = file.name.split('.')[1];
+        const filePath = path.join(pathFolder, file.name);
+        const type = path.parse(filePath).ext.slice(1);
         if (type === 'css') {
           const filePath = path.join(pathFolder, file.name);
           const stream = fs.createReadStream(filePath, 'utf8');
           let data = '';
           stream.on('data', chunk => (data += chunk));
           stream.on('end', () => {
-            fs.appendFile(path.join(__dirname, 'project-dist', 'bundle.css'), data, (error) => {
+            fs.appendFile(path.join(__dirname, 'project-dist', 'bundle.css'), data + '\n', (error) => {
               if (error) console.error(`Error: ${error.message}`);
             });
           });
