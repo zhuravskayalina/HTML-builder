@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const destinationPath = `${__dirname}/files-copy`;
+const destinationPath = path.join(__dirname, 'files-copy');
 const originalPath = path.join(__dirname, 'files');
 
 fs.rm(destinationPath, {recursive: true, force: true}, (error) => {
