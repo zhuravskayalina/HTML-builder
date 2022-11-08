@@ -16,7 +16,7 @@ fs.readdir(folderPath, {withFileTypes: true}, (error, files) => {
           if (error) {
             console.error(`Error: ${error.message}`);
           } else {
-            console.log(`${name} - ${type} - ${stats.size / 1024}kb`);
+            console.log(`${name} - ${type} - ${stats.size / 1000}kb`);
           }
         });
       }
